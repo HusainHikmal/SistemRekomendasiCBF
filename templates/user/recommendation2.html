@@ -1,0 +1,103 @@
+{% extends 'user/base.html' %}
+
+
+{% block content %}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Cari Rekomendasi Smartphone (Input Manual)</h2>
+    <form id="recommendManualForm" method="POST" action="{{ url_for('recommendation.recommend_from_manual') }}">
+        <div class="row">
+            <!-- Kolom 1 -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Brand</label>
+                    <select name="brand" class="form-select">
+                        <option value="" selected>Pilih Brand</option>
+                        {% for brand in brands %}
+                            <option value="{{ brand }}">{{ brand }}</option>
+                        {% endfor %}
+                    </select>  
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Chipset</label>
+                    <select name="chipset" class="form-select" >
+                        <option value="" selected>Pilih Chipset</option>
+                        {% for chipset in chipsets %}
+                            <option value="{{ chipset }}">{{ chipset }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">RAM</label>
+                    <select name="ram" class="form-select" >
+                        <option value="" selected>Pilih RAM</option>
+                        {% for ram in rams %}
+                            <option value="{{ ram }}">{{ ram }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Storage</label>
+                    <select name="storage" class="form-select" >
+                        <option value="" selected>Pilih Storage</option>
+                        {% for storage in storages %}
+                            <option value="{{ storage }}">{{ storage }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Baterai</label>
+                    <select name="battery" class="form-select" >
+                        <option value="" selected>Pilih Baterai</option>
+                        {% for battery in batteries %}
+                            <option value="{{ battery }}">{{ battery }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Kolom 2 -->
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label class="form-label">Kamera Utama</label>
+                    <select name="main_camera" class="form-select" >
+                        <option value="" selected>Pilih Kamera Utama</option>
+                        {% for camera in cameras %}
+                            <option value="{{ camera }}">{{ camera }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ukuran Layar</label>
+                    <select name="size" class="form-select" >
+                        <option value="" selected>Pilih Ukuran Layar</option>
+                        {% for size in sizes %}
+                            <option value="{{ size }}">{{ size }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tipe LCD</label>
+                    <select name="lcd" class="form-select" >
+                        <option value="" selected>Pilih Tipe LCD</option>
+                        {% for lcd in lcds %}
+                            <option value="{{ lcd }}">{{ lcd }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tahun Rilis</label>
+                    <select name="release_year" class="form-select" >
+                        <option value="" selected>Pilih Tahun Rilis</option>
+                        {% for year in years %}
+                            <option value="{{ year }}">{{ year }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mt-3">Cari Rekomendasi</button>
+    </form>
+</div>
+{% endblock %}

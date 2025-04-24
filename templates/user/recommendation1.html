@@ -1,0 +1,34 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Cari Rekomendasi Smartphone (Select Box)</h2>
+    
+    <!-- Form untuk memilih smartphone dari daftar -->
+    <form id="recommendForm" action="{{ url_for('recommendation.recommend_from_select') }}" method="post">
+        <div class="mb-3">
+            <label class="form-label">Pilih Smartphone</label>
+            <select name="smartphone_id" class="form-select select2" style="width:100%;">
+                {% for phone in smartphones %}
+                    <option value="{{ phone[0] }}">
+                        {{ phone[1] }} - Ram {{ phone[2] if phone[2] else 'N/A' }} - Storage:  {{ phone[3] if phone[3] else 'N/A' }} -  Chipset : {{ phone[5] if phone[5] else 'N/A' }} - Rilis : {{ phone[7] if phone[7] else 'N/A' }} - {{ phone[8] if phone[8] else 'N/A' }}
+                    </option>
+                {% else %}
+                    <option disabled>Tidak ada data</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Cari Rekomendasi</button>
+    </form>
+</div>
+
+<script>
+    // Inisialisasi Select2 pada select box
+    $(document).ready(function() {
+        $('.select2').select2({
+            placeholder: 'Cari smartphone...',
+            allowClear: true
+        });
+    });
+</script>
+{% endblock %}

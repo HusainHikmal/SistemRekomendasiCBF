@@ -1,0 +1,113 @@
+{% extends "admin/base.html" %}
+{% block title %}Dashboard Admin{% endblock %}
+
+{% block content %}
+<h2>Daftar Smartphone</h2>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nama</th>
+            <th>Brand</th>
+            <th>Chipset</th>
+            <th>RAM</th>
+            <th>ROM</th>
+            <th>Harga</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for smartphone in smartphones %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ smartphone[1] }}</td>
+            <td>{{ smartphone[2] }}</td>
+            <td>{{ smartphone[3] }}</td>
+            <td>{{ smartphone[4] }}</td>
+            <td>{{ smartphone[5] }}</td>
+            <td>{{ smartphone[7] }}</td>
+            <td>
+                <!-- Tombol Edit -->
+                <a href="{{ url_for('admin.edit_smartphone', id=smartphone[0]) }}" class="btn btn-warning btn-sm">Edit</a>
+                
+                <!-- Tombol Detail yang memicu modal -->
+                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal{{ smartphone[0] }}">
+                    Detail
+                </button>
+                
+                <!-- Tombol Hapus dengan konfirmasi SweetAlert -->
+                <form id="delete-form-{{ smartphone[0] }}" action="{{ url_for('admin.delete_smartphone', id=smartphone[0]) }}" method="POST" style="display:inline;">
+                    <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ smartphone[0] }})">Hapus</button>
+                </form>
+            </td>
+        </tr>
+
+        <!-- Modal Detail untuk smartphone (satu modal per baris smartphone) -->
+        <div class="modal fade" id="detailModal{{ smartphone[0] }}" tabindex="-1" aria-labelledby="detailModalLabel{{ smartphone[0] }}" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="detailModalLabel{{ smartphone[0] }}">Detail Smartphone: {{ smartphone[1] }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p><strong>Brand:</strong> {{ smartphone[2] }}</p>
+                <p><strong>Chipset:</strong> {{ smartphone[3] }}</p>
+                <p><strong>RAM:</strong> {{ smartphone[4] }}</p>
+                <p><strong>Storage (ROM):</strong> {{ smartphone[5] }}</p>
+                <p><strong>Performa:</strong> {{ smartphone[6] }}</p>
+                <p><strong>Harga:</strong> {{ smartphone[7] }}</p>
+                <p><strong>Baterai:</strong> {{ smartphone[8] }}</p>
+                <p><strong>Kamera utama:</strong> {{ smartphone[9] }}</p>
+                <p><strong>Sistem operasi:</strong> {{ smartphone[10] }}</p>
+                <p><strong>Ukuran layar:</strong> {{ smartphone[11] }} inch</p>
+                <p><strong>Jenis lcd:</strong> {{ smartphone[12] }} </p>
+                <p><strong>Dukungan sinyal:</strong> {{ smartphone[13] }} </p>
+                <p><strong>Tanggal rilis:</strong> {{ smartphone[15] }} {{ smartphone[16] }}  </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Akhir modal -->
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Script untuk SweetAlert dan konfirmasi hapus -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDelete(id) {
+        Swal.fire({
+            title: "Apakah Anda yakin?",
+            text: "Data yang dihapus tidak dapat dikembalikan!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Ya, hapus!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("delete-form-" + id).submit();
+            }
+        });
+    }
+
+    // Menampilkan notifikasi dari Flask Flash Messages
+    document.addEventListener("DOMContentLoaded", function () {
+        let messages = {{ get_flashed_messages(with_categories=true)|tojson }};
+        if (messages.length > 0) {
+            messages.forEach(([category, message]) => {
+                Swal.fire({
+                    icon: category === "success" ? "success" : "error",
+                    title: message,
+                    timer: 1300,
+                    showConfirmButton: false
+                });
+            });
+        }
+    });
+</script>
+{% endblock %}

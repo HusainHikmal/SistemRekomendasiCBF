@@ -1,0 +1,31 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Hasil Rekomendasi</h2>
+    {% if recommendations %}
+    <div class="row g-4">
+        {% for rec in recommendations %}
+            {% set phone = rec[0] %}
+            {% set score = rec[1] %}
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100 p-2">
+                <!-- Menampilkan gambar smartphone dari kolom 'images' -->
+                <img src="{{ phone[9] }}" alt="{{ phone[1] }} " class="card-img-top" style=" height: 450px;">
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{ phone[1] }}</h5>
+                    <p class="card-text">{{ phone[4]|truncate(100) }}</p>
+                    <p class="card-text">Harga: {{ phone[6] }}</p>
+                    <p class="card-text">Tahun rilis: {{ phone[7] }}</p>
+                    <p class="card-text"><small class="text-muted">Skor similarity: {{ score|round(4) }}</small></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center">Tidak ada rekomendasi yang ditemukan.</p>
+    {% endif %}
+</div>
+{% endblock %}

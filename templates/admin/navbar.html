@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <!-- Arahkan ke endpoint admin.admin_dashboard -->
+      <a class="navbar-brand" href="{{ url_for('admin.admin_dashboard') }}">Admin Panel</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <!-- Home → dashboard admin -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('admin.admin_dashboard') }}">Home</a>
+          </li>
+          <!-- Tambah Smartphone -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('admin.create_smartphone') }}">Tambah Smartphone</a>
+          </li>
+          <!-- Lihat Rekomendasi Manual -->
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('recommendation.recommend_from_select') }}">Lihat Rekomendasi</a>
+          </li>
+          <!-- Logout -->
+          <li class="nav-item">
+            <a class="nav-link text-danger" href="{{ url_for('auth.logout') }}">
+              <i class="bi bi-box-arrow-right"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  

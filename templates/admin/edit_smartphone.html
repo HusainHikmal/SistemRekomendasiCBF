@@ -1,0 +1,85 @@
+{% extends "admin/base.html" %}
+{% block title %}{{ "Tambah" if request.path.endswith('create') else "Edit" }} Smartphone{% endblock %}
+
+{% block content %}
+<h2>{{ "Tambah" if request.path.endswith('create') else "Edit" }} Smartphone</h2>
+
+<form method="POST">
+    <div class="row">
+        <!-- Kolom 1 -->
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Nama Smartphone</label>
+                <input type="text" name="phone" class="form-control" value="{{ smartphone[1] if smartphone else '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Brand</label>
+                <input type="text" name="brand" class="form-control" value="{{ smartphone[2] if smartphone else '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Chipset</label>
+                <input type="text" name="chipset" class="form-control" value="{{ smartphone[3] if smartphone else '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">RAM</label>
+                <input type="text" name="ram" class="form-control" value="{{ smartphone[4] if smartphone else '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Storage</label>
+                <input type="text" name="storage" class="form-control" value="{{ smartphone[5] if smartphone else '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Performance</label>
+                <input type="number" name="performance" class="form-control" value="{{ smartphone[6] if smartphone else '' }}" >
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Harga</label>
+                <input type="text" name="prices" class="form-control" value="{{ smartphone[7] if smartphone else '' }}" >
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Baterai</label>
+                <input type="text" name="battery" class="form-control" value="{{ smartphone[8] if smartphone else '' }}" required>
+            </div>
+        </div>
+
+        <!-- Kolom 2 -->
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Kamera Utama</label>
+                <input type="text" name="main_camera" class="form-control" value="{{ smartphone[9] if smartphone else '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Operasi Sistem</label>
+                <input type="text" name="system_operation" class="form-control" value="{{ smartphone[10] if smartphone else '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ukuran Layar</label>
+                <input type="text" name="size" class="form-control" value="{{ smartphone[11] if smartphone else '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Tipe LCD</label>
+                <input type="text" name="lcd" class="form-control" value="{{ smartphone[12] if smartphone else '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Jaringan </label>
+                <input type="text" name="band_1" class="form-control" value="{{ smartphone[13] if smartphone else '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">URL Gambar</label>
+                <input type="text" name="images" class="form-control" value="{{ smartphone[14] if smartphone else '' }}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Bulan Rilis</label>
+                <input type="text" name="release_month" class="form-control" value="{{ smartphone[15] if smartphone else '' }}" >
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Tahun Rilis</label>
+                <input type="number" name="release_year" class="form-control" value="{{ smartphone[16] if smartphone else '' }}" >
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+    <input type="button" class="btn btn-danger mt-3" value="Go back!" onclick="history.back()">
+</form>
+{% endblock %}

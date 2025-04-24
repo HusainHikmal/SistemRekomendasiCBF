@@ -1,0 +1,24 @@
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment directories
+venv/
+.env
+.env.production
+myenv/
+
+# SQLite databases
+instance/
+
+# Testing caches
+.pytest_cache/
+
+# IDE/editor directories
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
