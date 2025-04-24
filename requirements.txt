@@ -40,7 +40,7 @@ SQLAlchemy==2.0.38
 sympy==1.13.1
 threadpoolctl==3.5.0
 tokenizers==0.21.0
-torch==2.6.0+cpu
+torch==2.6.0
 tqdm==4.67.1
 transformers==4.48.3
 typing_extensions==4.12.2
