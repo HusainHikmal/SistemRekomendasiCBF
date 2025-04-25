@@ -8,7 +8,6 @@ Flask==3.1.0
 Flask-SQLAlchemy==3.1.1
 fsspec==2025.2.0
 greenlet==3.1.1
-gunicorn==23.0.0
 huggingface-hub==0.28.1
 idna==3.10
 iniconfig==2.1.0
@@ -25,7 +24,6 @@ pillow==11.1.0
 pluggy==1.5.0
 pytest==8.3.5
 python-dateutil==2.9.0.post0
-python-dotenv==1.1.0
 pytz==2025.1
 PyYAML==6.0.2
 regex==2024.11.6
@@ -33,14 +31,13 @@ requests==2.32.3
 safetensors==0.5.2
 scikit-learn==1.6.1
 scipy==1.15.1
-sentence-transformers==3.4.1
 setuptools==75.8.0
 six==1.17.0
 SQLAlchemy==2.0.38
 sympy==1.13.1
 threadpoolctl==3.5.0
 tokenizers==0.21.0
-torch==2.5.1
+torch==2.6.0
 tqdm==4.67.1
 transformers==4.48.3
 typing_extensions==4.12.2
